@@ -15,6 +15,10 @@ class Zones extends React.Component{
         this.zoneInterval = setInterval(this.getZones, 2500);
     }
 
+    componentWillUnmount(){
+        clearInterval(this.zoneInterval);
+    }
+
     getZones = () => {
         let url = "https://foodbankpallettracker.firebaseio.com/Zone.json";
         axios.get(url)
