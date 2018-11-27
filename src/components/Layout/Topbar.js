@@ -45,9 +45,9 @@ class Topbar extends React.Component{
         return(
             <AppBar position="sticky">
                 <Toolbar>
-                    <Typography variant="h5" color="inherit">Inventory App</Typography>
+                    <Typography variant="h5" color="inherit">InventoryLab</Typography>
                     <Button component={DashboardLink} className={classNames(classes.button, classes.leftMargin)}>Dashboard</Button>
-                    <Button component={PaletteLink} className={classes.button}>Palettes</Button>
+                    <Button component={PaletteLink} className={classes.button}>Pallets</Button>
                     <Button component={ZoneLink} className={classes.button}>Zones</Button>
                     <Button component={ReportLink} className={classes.button}>Reports</Button>
                     <div style={{flexGrow: 1}}></div>
