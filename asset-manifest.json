@@ -1,13 +1,13 @@
 {
-  "main.css": "/FoodBankEntrepreneurs/webapp/static/css/main.eb752c57.chunk.css",
-  "main.js": "/FoodBankEntrepreneurs/webapp/static/js/main.2f04579d.chunk.js",
-  "main.js.map": "/FoodBankEntrepreneurs/webapp/static/js/main.2f04579d.chunk.js.map",
-  "static/js/1.dc2a3cd4.chunk.js": "/FoodBankEntrepreneurs/webapp/static/js/1.dc2a3cd4.chunk.js",
-  "static/js/1.dc2a3cd4.chunk.js.map": "/FoodBankEntrepreneurs/webapp/static/js/1.dc2a3cd4.chunk.js.map",
-  "runtime~main.js": "/FoodBankEntrepreneurs/webapp/static/js/runtime~main.5d97e485.js",
-  "runtime~main.js.map": "/FoodBankEntrepreneurs/webapp/static/js/runtime~main.5d97e485.js.map",
-  "static/css/main.eb752c57.chunk.css.map": "/FoodBankEntrepreneurs/webapp/static/css/main.eb752c57.chunk.css.map",
-  "index.html": "/FoodBankEntrepreneurs/webapp/index.html",
-  "precache-manifest.8e8cb5ef96a1b4f3da1d346a7729788a.js": "/FoodBankEntrepreneurs/webapp/precache-manifest.8e8cb5ef96a1b4f3da1d346a7729788a.js",
-  "service-worker.js": "/FoodBankEntrepreneurs/webapp/service-worker.js"
+  "main.css": "/webapp/static/css/main.eb752c57.chunk.css",
+  "main.js": "/webapp/static/js/main.0ec938dd.chunk.js",
+  "main.js.map": "/webapp/static/js/main.0ec938dd.chunk.js.map",
+  "static/js/1.dc2a3cd4.chunk.js": "/webapp/static/js/1.dc2a3cd4.chunk.js",
+  "static/js/1.dc2a3cd4.chunk.js.map": "/webapp/static/js/1.dc2a3cd4.chunk.js.map",
+  "runtime~main.js": "/webapp/static/js/runtime~main.65c26c62.js",
+  "runtime~main.js.map": "/webapp/static/js/runtime~main.65c26c62.js.map",
+  "static/css/main.eb752c57.chunk.css.map": "/webapp/static/css/main.eb752c57.chunk.css.map",
+  "index.html": "/webapp/index.html",
+  "precache-manifest.86734d957f4254ad92a7bd822ea97320.js": "/webapp/precache-manifest.86734d957f4254ad92a7bd822ea97320.js",
+  "service-worker.js": "/webapp/service-worker.js"
 }

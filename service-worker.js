@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/FoodBankEntrepreneurs/webapp/precache-manifest.8e8cb5ef96a1b4f3da1d346a7729788a.js"
+  "/webapp/precache-manifest.86734d957f4254ad92a7bd822ea97320.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/FoodBankEntrepreneurs/webapp/index.html", {
+workbox.routing.registerNavigationRoute("/webapp/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
