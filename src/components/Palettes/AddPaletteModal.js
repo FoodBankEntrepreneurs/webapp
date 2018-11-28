@@ -23,7 +23,6 @@ export class AddPaletteModal extends React.Component{
         
         axios.patch(url, newPalette)
         .then(response => {
-            console.log(response);
             this.props.closeDialog();
             this.setState({name: "", shipDate: new moment().format('YYYY-MM-DDThh:mm')})
         })

@@ -23,7 +23,6 @@ class Zones extends React.Component{
         let url = "https://foodbankpallettracker.firebaseio.com/Zone.json";
         axios.get(url)
         .then(response => {
-            //console.log(response.data);
             this.setState({zones: response.data});
         })
         .catch(e => {
@@ -67,7 +66,7 @@ class Zones extends React.Component{
                             <Paper elevation={0}><Typography variant="h4">{key}</Typography></Paper>
                             <Typography>Loaded in truck</Typography>
                             {loadedPallets}
-                            <Divider/>
+                            <Divider className={classes.divider}/>
                             <Typography>Ready to load</Typography>
                             {readyPallets}
                         </div>
@@ -112,6 +111,9 @@ const styles = {
         margin: '10px',
         lineHeight: '50px',
         textAlign: 'center'
+    },
+    divider: {
+        marginBottom: '10px'
     }
 }
 

@@ -5,6 +5,7 @@ import {withStyles} from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
+import axios from 'axios';
 
 const DashboardLink = props => <Link to="/" {...props} />
 const PaletteLink = props => <Link to="/palettes" {...props} />
@@ -13,8 +14,31 @@ const ZoneLink = props => <Link to="/zones" {...props} />
 
 class Topbar extends React.Component{
     state = {
-        anchorEl: null
+        anchorEl: null,
+        zones: {}
       };
+    
+    zoneInterval = null;
+
+    componentDidMount(){
+        this.getZones();
+        //this.zoneInterval = setInterval(this.getZones, 2500);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.zoneInterval);
+    }
+
+    getZones = () => {
+        let url = "https://foodbankpallettracker.firebaseio.com/Zone.json";
+        axios.get(url)
+        .then(response => {
+            this.setState({zones: response.data});
+        })
+        .catch(e => {
+            console.error(e);
+        })
+    }
     
     handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -29,6 +53,46 @@ class Topbar extends React.Component{
         let {classes} = this.props;
         const isMenuOpen = Boolean(anchorEl);
 
+        let notificationNum = 0;
+
+        let zonesState = this.state.zones;
+        let notifications = null;
+
+        if(zonesState)
+            notifications = Object.keys(zonesState).map((key) => {
+                let expectedPallets = null;
+                if(zonesState[key].expected_pallets)
+                    expectedPallets = zonesState[key].expected_pallets;
+
+                let incorrectLoadedPallets = [];
+
+                if(zonesState[key].loaded_pallets && expectedPallets){
+                    incorrectLoadedPallets = zonesState[key].loaded_pallets.map((name) => {
+                        if(!name.includes(key) || !expectedPallets.includes(name)){
+                            notificationNum++;
+                            return <MenuItem><Typography>{name} has been loaded to the incorrect truck</Typography></MenuItem>
+                        }
+                    });
+                }
+
+                let missedPallets = [];
+                if(zonesState[key].loaded_pallets && expectedPallets){
+                    missedPallets = zonesState[key].expected_pallets.map((name) => {
+                        if(!zonesState[key].loaded_pallets.includes(name)){
+                            notificationNum++;
+                            return <MenuItem><Typography>{name} is missing in truck {key}</Typography></MenuItem>
+                        }
+                    });
+                }
+
+
+
+                return [...incorrectLoadedPallets, ...missedPallets];
+        });
+
+        if(notificationNum === 0)
+            notifications = (<MenuItem>No new notifications</MenuItem>);
+
         const renderMenu = (
             <Menu
               anchorEl={anchorEl}
@@ -37,10 +101,25 @@ class Topbar extends React.Component{
               open={isMenuOpen}
               onClose={this.handleMenuClose}
             >
-              <MenuItem onClick={this.handleMenuClose}>stuff</MenuItem>
-              <MenuItem onClick={this.handleMenuClose}>stuff 2</MenuItem>
+              {notifications}
             </Menu>
           );
+
+        const renderNotificationIcon = 
+            notificationNum>0 ?
+            (
+                <IconButton color="inherit" onClick={this.handleProfileMenuOpen}>
+                    <Badge badgeContent={notificationNum} color="secondary">
+                        <NotificationsIcon />
+                    </Badge>
+                </IconButton>
+            ):
+            (
+                <IconButton color="inherit" onClick={this.handleProfileMenuOpen}>
+                    <NotificationsIcon />
+                </IconButton>
+            )
+
 
         return(
             <AppBar position="sticky">
@@ -51,11 +130,7 @@ class Topbar extends React.Component{
                     <Button component={ZoneLink} className={classes.button}>Zones</Button>
                     <div style={{flexGrow: 1}}></div>
                     <div>
-                        <IconButton color="inherit" onClick={this.handleProfileMenuOpen}>
-                            <Badge badgeContent={17} color="secondary">
-                            <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+                        {renderNotificationIcon}
                     </div>
                     {renderMenu}
                 </Toolbar>

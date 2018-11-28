@@ -2,6 +2,7 @@ import * as React from 'react';
 import ReactTable from "react-table";
 import axios from 'axios';
 import moment from 'moment';
+import { Button } from '@material-ui/core';
 
 class PaletteTable extends React.Component{
   state = {
