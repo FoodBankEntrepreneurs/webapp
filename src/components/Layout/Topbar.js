@@ -22,7 +22,7 @@ class Topbar extends React.Component{
 
     componentDidMount(){
         this.getZones();
-        //this.zoneInterval = setInterval(this.getZones, 2500);
+        this.zoneInterval = setInterval(this.getZones, 4500);
     }
 
     componentWillUnmount(){

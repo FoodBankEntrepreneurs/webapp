@@ -13,7 +13,7 @@ class PaletteTable extends React.Component{
 
   componentDidMount(){
       this.getPallets();
-      //this.palletInterval =  setInterval(this.getPallets, 2500)
+      this.palletInterval =  setInterval(this.getPallets, 2500)
   }
 
   componentWillUnmount(){
