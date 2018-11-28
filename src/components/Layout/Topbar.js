@@ -6,6 +6,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import axios from 'axios';
+import moment from 'moment';
 
 const DashboardLink = props => <Link to="/" {...props} />
 const PaletteLink = props => <Link to="/palettes" {...props} />
@@ -78,7 +79,15 @@ class Topbar extends React.Component{
                 let missedPallets = [];
                 if(zonesState[key].loaded_pallets && expectedPallets){
                     missedPallets = zonesState[key].expected_pallets.map((name) => {
-                        if(!zonesState[key].loaded_pallets.includes(name)){
+                        if(!zonesState[key].loaded_pallets.includes(name) && new moment(zonesState[key].departure_time).isBefore(new moment(), "minute")){
+                            notificationNum++;
+                            return <MenuItem><Typography>{name} is missing in truck {key}</Typography></MenuItem>
+                        }
+                    });
+                }
+                if(!zonesState[key].loaded_pallets && expectedPallets){
+                    missedPallets = zonesState[key].expected_pallets.map((name) => {
+                        if(new moment(zonesState[key].departure_time).isBefore(new moment(), "minute")){
                             notificationNum++;
                             return <MenuItem><Typography>{name} is missing in truck {key}</Typography></MenuItem>
                         }
