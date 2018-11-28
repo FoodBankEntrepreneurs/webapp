@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {Dialog, DialogContent, DialogTitle, DialogActions, Button, TextField} from '@material-ui/core'
 import axios from 'axios';
+import moment from 'moment';
 
 export class AddPaletteModal extends React.Component{
     state = {
         name: "",
-        shipDate: new Date().toISOString()
+        shipDate: new moment().format('YYYY-MM-DDThh:mm')
     }
 
     handleTextFieldChange = name => e => {
@@ -16,7 +17,7 @@ export class AddPaletteModal extends React.Component{
         let url = "https://foodbankpallettracker.firebaseio.com/Palettes.json";
         let newPalette = {[this.state.name]: {
             name: this.state.name,
-            date_created: new Date().toISOString(),
+            date_created: new moment(),
             shipment_date: this.state.shipDate
         }}
         
@@ -24,7 +25,7 @@ export class AddPaletteModal extends React.Component{
         .then(response => {
             console.log(response);
             this.props.closeDialog();
-            this.setState({name: "", shipDate: new Date().toISOString()})
+            this.setState({name: "", shipDate: new moment().format('YYYY-MM-DDThh:mm')})
         })
         .catch(e => {
             console.error(e);

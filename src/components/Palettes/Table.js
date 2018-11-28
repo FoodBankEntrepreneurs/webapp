@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactTable from "react-table";
 import axios from 'axios';
+import moment from 'moment';
 
 class PaletteTable extends React.Component{
   state = {
@@ -31,14 +32,15 @@ class PaletteTable extends React.Component{
   render(){
     const columns = [{
         Header: 'Date created',
-        accessor: 'date_created'
+        accessor: 'date_created',
+        Cell: props => <span>{new moment(props.value).format('M/D/YY h:mm A')}</span>
       },{
         Header: 'Name',
         accessor: 'name'
       }, {
         Header: 'Expected ship date',
         accessor: 'shipment_date',
-        Cell: props => <span className='number'>{props.value}</span>
+        Cell: props => <span>{new moment(props.value).format('M/D/YY h:mm A')}</span>
       }]
     
     return(
