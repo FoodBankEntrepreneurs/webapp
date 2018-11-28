@@ -12,7 +12,7 @@ class Zones extends React.Component{
     
     componentDidMount(){
         this.getZones();
-        this.zoneInterval = setInterval(this.getZones, 2500);
+        //this.zoneInterval = setInterval(this.getZones, 2500);
     }
 
     componentWillUnmount(){
@@ -38,12 +38,15 @@ class Zones extends React.Component{
         if(zonesState)
             zones = Object.keys(zonesState).map((key) => {
                 let pallets = zonesState[key].current_pallets.map((name) => {
-                    return <Paper className={classes.pallet}>{name}</Paper>
+                    if(!name.includes(key))
+                        return <Paper className={classes.pallet} style={{backgroundColor: '#F44336'}}>{name}</Paper>
+                    else
+                        return <Paper className={classes.pallet}>{name}</Paper>
                 })
 
                 return (
                     <Grid item xs={6} className={classes.zone}>
-                    {key}
+                    <Paper elevation={0}><Typography variant="h4">{key}</Typography></Paper>
                     {pallets}
                     </Grid>
                 )
@@ -73,7 +76,10 @@ const styles = {
     },
     zone: {
         padding: '10px',
-        border: '1px solid black'
+        border: '2px dashed #616161',
+        '& h4': {
+            textAlign: 'center'
+        }
     },
     pallet: {
         display: 'inline-block',
