@@ -45,6 +45,7 @@ class PaletteTable extends React.Component{
         <ReactTable
             data={this.state.pallets}
             columns={columns}
+            filterable
         />
     );
   }
