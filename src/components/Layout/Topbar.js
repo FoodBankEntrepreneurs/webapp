@@ -9,7 +9,7 @@ import classNames from 'classnames';
 const DashboardLink = props => <Link to="/" {...props} />
 const PaletteLink = props => <Link to="/palettes" {...props} />
 const ZoneLink = props => <Link to="/zones" {...props} />
-const ReportLink = props => <Link to="/reports" {...props} />
+//const ReportLink = props => <Link to="/reports" {...props} />
 
 class Topbar extends React.Component{
     state = {
@@ -49,7 +49,6 @@ class Topbar extends React.Component{
                     <Button component={DashboardLink} className={classNames(classes.button, classes.leftMargin)}>Dashboard</Button>
                     <Button component={PaletteLink} className={classes.button}>Pallets</Button>
                     <Button component={ZoneLink} className={classes.button}>Zones</Button>
-                    <Button component={ReportLink} className={classes.button}>Reports</Button>
                     <div style={{flexGrow: 1}}></div>
                     <div>
                         <IconButton color="inherit" onClick={this.handleProfileMenuOpen}>
